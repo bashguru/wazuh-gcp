@@ -5,9 +5,10 @@ resource "google_compute_firewall" "wazuh_vpc_firewall" {
 
     allow {
       protocol = "tcp"
-      ports = ["1514", "443", "514"]
+      ports = ["1514", "443", "514", "1515", "1516", "55000", "9200", "9300-9400"]
     } 
      source_tags = [ "INGRESS" ]
+     target_tags = ["private-instances"]
      depends_on = [
        google_compute_network.wazuh_vpc_network, google_compute_subnetwork.wazuh_vpc_subnet
      ]
